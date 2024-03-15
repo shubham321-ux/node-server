@@ -1,10 +1,13 @@
+require('dotenv').config()
+
 const express=require('express')
 const cors = require('cors')
 const bodyParser=require('body-parser')
 const mongoose=require('mongoose')
+const PORT = process.env.PORT || 8080;
 
 const main=async()=>{
-    await mongoose.connect('mongodb://127.0.0.1:27017/myapp')
+    await mongoose.connect(process.env.MONGO_URL)
     console.log("DB connected")
 }
 main()
@@ -43,6 +46,6 @@ app.get('/geted',async(req,res)=>{
   res.send(dataload)
   console.log(dataload)
 })
-app.listen(3002,()=>{
-    console.log("server started")
+app.listen(PORT,()=>{
+    console.log("server started on " ,PORT)
 })
