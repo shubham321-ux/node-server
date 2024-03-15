@@ -5,7 +5,10 @@ const cors = require('cors')
 const bodyParser=require('body-parser')
 const mongoose=require('mongoose')
 const PORT = process.env.PORT || 8080;
+
+const app=express()
 app.use(cors())
+
 
 const main=async()=>{
     await mongoose.connect(process.env.MONGO_URL)
@@ -22,7 +25,7 @@ const userSchema = mongoose.Schema({
 
 const model=mongoose.model('userdata',userSchema)
 
-const app=express()
+
 
 app.use(bodyParser.json())
 
