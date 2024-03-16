@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 8080;
 
 const app=express()
 app.use(cors())
+app.use(express.json())
 
 
 const main=async()=>{
@@ -22,16 +23,16 @@ const userSchema = mongoose.Schema({
     Massage:String
 });
 
-const model=mongoose.model('userdata',userSchema);
+const model=mongoose.model('PortfolioData',userSchema);
 
 
 
 app.use(bodyParser.json());
 
-app.get('/',(req,res)=>{
+app.get('/demo',(req,res)=>{
     res.send("welcome")
 });
-app.post('/demo',async(req,res)=>{
+app.post('/',async(req,res)=>{
     console.log("")
     let resdata= model()
     resdata.Gmail=req.body.email
